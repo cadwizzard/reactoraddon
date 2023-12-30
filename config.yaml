@@ -1,0 +1,29 @@
+---
+name: Reactor
+version: 0.1.0
+slug: reactor
+description: An automation engine that integrates rules and actions
+arch:
+  - amd64
+  - armv7
+  - aarch64
+image: darrylleaning/haosaddonrepo-{arch}
+init: false
+url: https://hub.docker.com/repository/docker/darrylleaning/haosaddonrepo/general
+startup: application
+boot: auto
+hassio_api: true
+hassio_role: manager
+homeassistant_api: true
+ingress: true
+ingress_stream: true
+map:
+  - config:rw
+ports:
+  "8111/tcp": 8111
+ports_description:
+  "8111": "Port for reactor"
+options:
+  long_lived_token: null
+schema:
+  long_lived_token: str
