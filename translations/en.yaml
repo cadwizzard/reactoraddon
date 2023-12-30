@@ -1,0 +1,4 @@
+configuration:
+  long_lived_token:
+    name: Enter your long lived access token here
+    description: Create under users to allow reactor to access ha  
