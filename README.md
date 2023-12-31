@@ -1,5 +1,5 @@
 # hassio-reactor-addon
-All CREDITS to mrw298 for initial write. I've created this add-on to pull newer versions that I can maintain/update myself.
+All CREDITS to mrw298 for initial write. I've cloned this add-on to pull newer versions that I can maintain/update myself.
 See: https://github.com/mrw298/hassio-reactor-addon for original work
 ## Installation
 
@@ -30,3 +30,5 @@ The reactor configuration files are copied to the `/config/reactor` directory on
 [addon-reactor]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=0521a35e_reactor&repository_url=https%3A%2F%2Fgithub.com%2Fcadwizzard%2Freactoraddon
 [addon-code]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_vscode&repository_url=https%3A%2F%2Fgithub.com%2Fhassio-addons%2Frepository
 [reactor-docs-hass-install]: https://reactor.toggledbits.com/docs/HassController/
+[addon-docker-copyedit]
+https%3A%2F%2Fgithub.com/gdraheim/docker-copyedit
