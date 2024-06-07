@@ -1,2 +1,2 @@
-## v0.1.0 (2023-12-30)
-- First Build - Reactor version pulled: latest-23344-ca53d088
+## v0.2.0 (2024-06-07)
+ Reactor version pulled on June 24
