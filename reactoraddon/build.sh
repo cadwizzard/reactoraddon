@@ -2,8 +2,8 @@
 
 set -ex;
 
-VERSION=0.2.0
-BUILD_ARCH=(amd64 armv7l aarch64 )
+VERSION=0.3.0
+BUILD_ARCH=(armv7l aarch64 )
 
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
