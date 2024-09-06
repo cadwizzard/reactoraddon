@@ -1,6 +1,5 @@
 ---
 build_from:
-  amd64: toggledbits/reactor-novol:latest-amd64
   aarch64: toggledbits/reactor-novol:latest-aarch64
   armv7l: toggledbits/reactor-novol:latest-armv7l
 args:
