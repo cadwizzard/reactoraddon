@@ -1,2 +1,2 @@
-## v0.4.0 (2024-06-14)
- Reactor version pulled on 14 Sept 24 (latest-24257)
+## v0.5.0 (2024-10-20)
+ Reactor version pulled on 10 October 24 (latest)
