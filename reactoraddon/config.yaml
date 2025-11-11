@@ -1,6 +1,6 @@
 ---
 name: Reactor
-version: 0.93.0
+version: 0.94.0
 slug: reactor
 description: An automation engine that integrates rules and actions
 arch:
