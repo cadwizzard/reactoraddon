@@ -1,28 +1,42 @@
 #!/bin/bash
 
-set -ex;
+set -ex
 
 VERSION=0.96.0
-BUILD_ARCH=(armv7l arm64 )
+BUILD_ARCH=(aarch64)
 
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
 
-# Loop over architectures
-for arch in "${BUILD_ARCH[@]}"
-do
-	echo "Build arch: $arch"
+for arch in "${BUILD_ARCH[@]}"; do
+    echo "Build HA architecture: $arch"
 
-	SRC_IMAGE=toggledbits/reactor
-	SRC_TAG=latest-$arch
-	DST_IMAGE=$SRC_IMAGE-novol
+    SRC_IMAGE=toggledbits/reactor
+    DST_IMAGE="${SRC_IMAGE}-novol"
 
-	docker pull $SRC_IMAGE:$SRC_TAG
+    case "$arch" in
+        aarch64)
+            SRC_TAG=latest-arm64
+            ;;
+        *)
+            echo "Unsupported architecture: $arch" >&2
+            exit 1
+            ;;
+    esac
 
-	./docker-copyedit.py \
-	 FROM $SRC_IMAGE:$SRC_TAG INTO $DST_IMAGE:$SRC_TAG -vv -T /tmp REMOVE ALL VOLUMES 
+    docker pull "${SRC_IMAGE}:${SRC_TAG}"
 
-	docker build -t darrylleaning/haosaddonrepo-$arch:$VERSION --build-arg BUILD_FROM=$DST_IMAGE:$SRC_TAG --build-arg BUILD_ARCH=$arch --build-arg BUILD_VERSION=$VERSION . 
-	docker push darrylleaning/haosaddonrepo-$arch:$VERSION
-	
+    ./docker-copyedit.py \
+        FROM "${SRC_IMAGE}:${SRC_TAG}" \
+        INTO "${DST_IMAGE}:${SRC_TAG}" \
+        -vv -T /tmp REMOVE ALL VOLUMES
+
+    docker build \
+        -t "darrylleaning/haosaddonrepo-${arch}:${VERSION}" \
+        --build-arg "BUILD_FROM=${DST_IMAGE}:${SRC_TAG}" \
+        --build-arg "BUILD_ARCH=${arch}" \
+        --build-arg "BUILD_VERSION=${VERSION}" \
+        .
+
+    docker push "darrylleaning/haosaddonrepo-${arch}:${VERSION}"
 done
