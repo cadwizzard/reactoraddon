@@ -12,16 +12,26 @@ LABEL \
 
 RUN set -eux; \
     if command -v apk >/dev/null 2>&1; then \
-        apk add --no-cache bash supervisor nginx yq jq curl ca-certificates; \
+        apk add --no-cache bash supervisor nginx jq curl ca-certificates; \
     elif command -v apt-get >/dev/null 2>&1; then \
         apt-get update; \
         DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            bash supervisor nginx yq jq curl ca-certificates; \
+            bash supervisor nginx jq curl ca-certificates; \
         rm -rf /var/lib/apt/lists/*; \
     else \
         echo "Unsupported base image: neither apk nor apt-get is available" >&2; \
         exit 1; \
     fi; \
+    case "${BUILD_ARCH}" in \
+        aarch64) YQ_ARCH=arm64 ;; \
+        armv7|armhf) YQ_ARCH=arm ;; \
+        amd64) YQ_ARCH=amd64 ;; \
+        *) echo "Unsupported yq architecture: ${BUILD_ARCH}" >&2; exit 1 ;; \
+    esac; \
+    curl -LfsS "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_${YQ_ARCH}" \
+      -o /usr/local/bin/yq; \
+    chmod 0755 /usr/local/bin/yq; \
+    yq --version; \
     mkdir -p /usr/src/bashio; \
     curl -LfsS "https://github.com/hassio-addons/bashio/archive/v${BASHIO_VERSION}.tar.gz" \
       | tar -xzf - --strip-components=1 -C /usr/src/bashio; \
