@@ -6,6 +6,7 @@ description: An automation engine that integrates rules and actions
 arch:
   - amd64
   - armv7
+  - aarch64
   - arm64
 image: darrylleaning/haosaddonrepo-{arch}
 init: false
