@@ -15,6 +15,7 @@ hassio_api: true
 hassio_role: manager
 homeassistant_api: true
 ingress: true
+ingress_port: 8111
 ingress_stream: true
 map:
   - config:rw
