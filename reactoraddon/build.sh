@@ -2,7 +2,7 @@
 
 set -ex
 
-VERSION=0.97
+VERSION=0.98
 BUILD_ARCH=(aarch64)
 
 export DOCKER_BUILDKIT=0
