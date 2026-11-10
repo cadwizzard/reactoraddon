@@ -1,2 +1,2 @@
-## v0.96.1 (2026-08-08)
- Reactor version pulled on 08 August 26 (latest)
+## v0.97 (2026-11-10)
+ Reactor version pulled on 10 November 26 (latest)
